@@ -36,7 +36,7 @@ routes.get('/urls', UrlsController.search);
 routes.post('/urls', authenticate, UrlsController.create);
 routes.get('/urls/:id', UrlsController._populate, UrlsController.fetch);
 routes.delete('/urls/:id', authenticate, UrlsController._populate, UrlsController.delete);
-routes.delete('/urls', accessControl('admin'), UrlsController.deleteAll);
+routes.delete('/urls', authenticate, UrlsController.deleteAll);
 
 // Admin
 routes.get('/admin', accessControl('admin'), MetaController.index);

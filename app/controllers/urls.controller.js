@@ -87,20 +87,13 @@ class UrlController extends BaseController {
 	}
 
 	deleteAll = async (req, res, next) => {
-		/**
-		 * Ensure the user attempting to delete the url owns the url
-		 *
-		 * ~~ toString() converts objectIds to normal strings
-		 */
-		if (req.url._user.toString() === req.currentUser._id.toString()) {
-			try {
-				await req.url.remove();
-				res.sendStatus(204);
-			} catch (err) {
-				next(err);
-			}
-		} else {
-			res.sendStatus(403);
+		try {
+			await Url.remove({
+				_user: req.currentUser._id,
+			});
+			res.sendStatus(204);
+		} catch (err) {
+			next(err);
 		}
 	}
 }
