@@ -1,0 +1,6 @@
+{
+    "npm-scripts.showStartNotification": false,
+    "files.exclude": {
+        "/build": true
+    }
+}
