@@ -56,6 +56,25 @@ class UrlController extends BaseController {
 	create = async (req, res, next) => {
 		const params = this.filterParams(req.body, this.whitelist);
 
+		function stringGen(len) {
+			let text = '';
+
+			let charset = 'abcdefghijklmnopqrstuvwxyz0123456789';
+
+			for (let i = 0; i < len; i++)
+				text += charset.charAt(Math.floor(Math.random() * charset.length));
+
+			return text;
+		}
+
+		if (!params['alias']) {
+			let alias = '';
+			do {
+				alias = stringGen(5);
+			} while (await Url.count({ alias }) > 0);
+			params['alias'] = alias;
+		}
+
 		const url = new Url({
 			...params,
 			_user: req.currentUser._id,

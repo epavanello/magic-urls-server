@@ -5,9 +5,17 @@ const UrlSchema = new Schema({
   address: {
     type: String,
     required: true,
+    validate: {
+      validator(url) {
+        let u = require('url');
+        return !!u.parse(url).hostname;
+      },
+      message: '{VALUE} is not a valid url.',
+    },
   },
   alias: {
     type: String,
+    unique: true,
   },
   // media: { type: Schema.Types.ObjectId, ref: 'Media' },
   // likes : [{ type: Schema.Types.ObjectId, ref: 'Like' }],

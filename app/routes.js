@@ -16,6 +16,7 @@ routes.get('/', MetaController.index);
 
 // Authentication
 routes.post('/auth/login', AuthController.login);
+routes.post('/auth/signup', AuthController.signup);
 
 // Users
 routes.get('/users', UsersController.search);

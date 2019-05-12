@@ -20,6 +20,30 @@ class AuthController extends BaseController {
       next(err);
     }
   }
+  signup = async (req, res, next) => {
+    const { email, username, password, cpassword } = req.body;
+
+    if (password != cpassword) {
+      const err = new Error('Passwords are different.');
+      err.status = 400;
+      return next(err);
+    }
+
+    let newUser = new User({
+      email,
+      username,
+      password,
+      provider: 'local',
+    });
+
+    try {
+      await newUser.save();
+      res.status(200);
+    } catch (err) {
+      err.status = 400;
+      next(err);
+    }
+  }
 }
 
 export default new AuthController();
