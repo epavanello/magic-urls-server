@@ -5,7 +5,8 @@ import methodOverride from 'method-override';
 import morgan from 'morgan';
 import helmet from 'helmet';
 
-import routes from './routes';
+import apiRoute from './routes/api.route';
+import appRoute from './routes/app.route';
 import Constants from './config/constants';
 
 const app = express();
@@ -37,7 +38,9 @@ app.use(methodOverride());
 app.use('/public', express.static(`${__dirname}/public`));
 
 // Mount API routes
-app.use(Constants.apiPrefix, routes);
+app.use(Constants.apiPrefix, apiRoute);
+app.use('/', appRoute);
+
 
 app.listen(Constants.port, () => {
   // eslint-disable-next-line no-console

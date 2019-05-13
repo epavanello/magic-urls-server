@@ -38,7 +38,7 @@ class AuthController extends BaseController {
 
     try {
       await newUser.save();
-      res.status(200);
+      return res.status(200).json({ id: newUser._id });
     } catch (err) {
       err.status = 400;
       next(err);

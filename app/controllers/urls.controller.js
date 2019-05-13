@@ -41,6 +41,24 @@ class UrlController extends BaseController {
 		}
 	}
 
+	go = async (req, res) => {
+		const { alias } = req.params;
+
+		try {
+			let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
+			const url = await Url.find({ alias });
+			if (!url) {
+				new Error('Url not found.');
+			}
+			url[0]._views = url[0]._views.concat([{ ip, date: Date.now() }]);
+			await url[0].save();
+			res.redirect(url[0].address);
+		} catch (err) {
+			res.status(500).send(err.message || 'Internal Server Error.');
+		}
+	}
+
 	/**
 	 * req.url is populated by middleware in routes.js
 	 */
