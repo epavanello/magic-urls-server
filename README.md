@@ -53,6 +53,7 @@ Now we can access one of these variables with something like `process.env.MONGO_
 - [ ] Add OAuth Login Support (Facebook, Twitter, Google)
 - [ ] Add support for MySql or PostgreSQL (Possibly with sequelize)
 - [ ] Reset password functionality
+- [ ] https://github.com/developit/express-es6-rest-api/blob/master/src/index.js
 
 ## License
 MIT

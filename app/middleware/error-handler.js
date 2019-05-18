@@ -2,7 +2,7 @@ import Constants from '../config/constants';
 
 export default function errorHandler(err, req, res, next) {
   if (!err) {
-    return res.sendStatus(500);
+    return res.send(err.status || 500).json({ message: err.message });
   }
 
   const error = {

@@ -8,7 +8,7 @@ export default function authenticate(req, res, next) {
   const { authorization } = req.headers;
   jwt.verify(authorization, sessionSecret, async (err, decoded) => {
     if (err) {
-      return res.sendStatus(401);
+      return res.status(401).json({ message: 'Unauthorized' });
     }
 
     // If token is decoded successfully, find user and attach to our request
@@ -16,11 +16,11 @@ export default function authenticate(req, res, next) {
     try {
       const user = await User.findById(decoded._id);
       if (!user) {
-        return res.sendStatus(401);
+        return res.status(401).json({ message: 'Unauthorized' });
       }
       req.currentUser = user;
       next();
-    } catch(err) {
+    } catch (err) {
       next(err);
     }
   });

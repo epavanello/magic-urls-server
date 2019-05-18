@@ -31,9 +31,7 @@ class UrlController extends BaseController {
 
 	search = async (req, res, next) => {
 		try {
-			const urls =
-				await Url.find({})
-					.populate({ path: '_user', select: '-urls -role' });
+			const urls = await Url.find({ _user: req.user });
 
 			res.json(urls);
 		} catch (err) {
@@ -119,7 +117,7 @@ class UrlController extends BaseController {
 				next(err);
 			}
 		} else {
-			res.sendStatus(403);
+			res.status(403).json({ message: 'Forbidden' });
 		}
 	}
 

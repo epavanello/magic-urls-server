@@ -25,7 +25,7 @@ class UsersController extends BaseController {
 
       req.user = user;
       next();
-    } catch(err) {
+    } catch (err) {
       next(err);
     }
   }
@@ -34,7 +34,7 @@ class UsersController extends BaseController {
     try {
       // @TODO Add pagination
       res.json(await User.find());
-    } catch(err) {
+    } catch (err) {
       next(err);
     }
   }
@@ -43,7 +43,7 @@ class UsersController extends BaseController {
     const user = req.user || req.currentUser;
 
     if (!user) {
-      return res.sendStatus(404);
+      return res.status(404).json({ message: 'Not found' });
     }
 
     res.json(user);
@@ -61,7 +61,7 @@ class UsersController extends BaseController {
       const savedUser = await newUser.save();
       const token = savedUser.generateToken();
       res.status(201).json({ token });
-    } catch(err) {
+    } catch (err) {
       err.status = 400;
       next(err);
     }
@@ -80,13 +80,13 @@ class UsersController extends BaseController {
 
   delete = async (req, res, next) => {
     if (!req.currentUser) {
-      return res.sendStatus(403);
+      return res.status(403).json({ message: 'Forbidden' });
     }
 
     try {
       await req.currentUser.remove();
       res.sendStatus(204);
-    } catch(err) {
+    } catch (err) {
       next(err);
     }
   }

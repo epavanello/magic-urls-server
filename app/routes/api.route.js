@@ -3,7 +3,6 @@ import { Router } from 'express';
 import MetaController from '../controllers/meta.controller';
 import AuthController from '../controllers/auth.controller';
 import UsersController from '../controllers/users.controller';
-import PostsController from '../controllers/posts.controller';
 import UrlsController from '../controllers/urls.controller';
 
 import authenticate from '../middleware/authenticate';
@@ -26,14 +25,8 @@ routes.put('/users/me', authenticate, UsersController.update);
 routes.delete('/users/me', authenticate, UsersController.delete);
 routes.get('/users/:username', UsersController._populate, UsersController.fetch);
 
-// Post
-routes.get('/posts', PostsController.search);
-routes.post('/posts', authenticate, PostsController.create);
-routes.get('/posts/:id', PostsController._populate, PostsController.fetch);
-routes.delete('/posts/:id', authenticate, PostsController.delete);
-
 // Url
-routes.get('/urls', UrlsController.search);
+routes.get('/urls', authenticate, UrlsController.search);
 routes.post('/urls', authenticate, UrlsController.create);
 routes.get('/urls/:id', UrlsController._populate, UrlsController.fetch);
 routes.delete('/urls/:id', authenticate, UrlsController._populate, UrlsController.delete);

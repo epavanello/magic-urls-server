@@ -38,8 +38,8 @@ UrlSchema.set('toJSON', {
     obj.views = obj._views.length;
     delete obj._id;
     delete obj.__v;
-    delete obj._user;
-    //delete obj._views;
+    //delete obj._user;
+    delete obj._views;
     return obj;
   },
 });

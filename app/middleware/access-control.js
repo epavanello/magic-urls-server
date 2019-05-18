@@ -20,7 +20,7 @@ export default function accessControl(role) {
       !req.currentUser ||
       currentRoleIndex < requiredRoleIndex
     ) {
-      res.sendStatus(403);
+      res.status(403).json({ message: 'Forbidden' });
       return;
     }
 
