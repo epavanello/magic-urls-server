@@ -31,7 +31,7 @@ class UrlController extends BaseController {
 
 	search = async (req, res, next) => {
 		try {
-			const urls = await Url.find({ _user: req.user });
+			const urls = await Url.find({ _user: req.currentUser });
 
 			res.json(urls);
 		} catch (err) {

@@ -15,24 +15,15 @@
     "node": ">= 6",
     "npm": ">= 3"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/kylealwyn/node-rest-api-boilerplate.git"
-  },
   "keywords": [
     "express",
     "es6",
     "rest",
     "api",
-    "boilerplate",
     "mongo"
   ],
-  "author": "Kyle Alwyn <kjalwyn@gmail.com>",
+  "author": "Pavanello Emanuele <pavanello.emanuele@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kylealwyn/node-rest-api-boilerplate/issues"
-  },
-  "homepage": "https://github.com/kylealwyn/node-rest-api-boilerplate",
   "dependencies": {
     "babel-core": "^6.18.0",
     "bcrypt": "^3.0.6",
