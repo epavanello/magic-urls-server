@@ -4,8 +4,8 @@
   "description": "Magic Urls Server",
   "main": "index.js",
   "scripts": {
-    "build": "npm run clean && babel --presets @babel/preset-env app -d build",
-    "build-dev": "npm run clean && babel --presets @babel/preset-env app --source-maps -d build",
+    "build": "npm run clean && babel app -d build",
+    "build-dev": "npm run clean && babel app --source-maps -d build",
     "clean": "rm -rf build && mkdir build",
     "start": "nodemon",
     "lint": "eslint app",
